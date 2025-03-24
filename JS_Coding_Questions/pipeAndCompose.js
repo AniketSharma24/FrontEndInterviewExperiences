@@ -29,7 +29,7 @@ const toString = (x) => `${x}`;
 // console.log(result1);
 
 // const result2 = pipe(toString, add5)(5);  // "5" + 5 = "55"
-// console.log(result2); 
+// console.log(result2);
 
 // console.log("Compose");
 
@@ -39,22 +39,16 @@ const toString = (x) => `${x}`;
 // const result4 = compose(toString, add5)(5);  // "5" + 5 = "55"
 // console.log(result4);
 
-
-
-
-
-
 // Solution
 const pipe = (...fns) => {
-    return function (x) {
-      return fns.reduce((v, f) => f(v), x);
-    };
+  return function (x) {
+    return fns.reduce((v, f) => f(v), x);
   };
-  
-  const compose = (...fns) => {
-    return function (x) {
-      return fns.reduceRight((v, f) => f(v), x); 
-      // You can reverse fn array and use reduce
-    };
-  };
+};
 
+const compose = (...fns) => {
+  return function (x) {
+    return fns.reduceRight((v, f) => f(v), x);
+    // You can reverse fn array and use reduce
+  };
+};

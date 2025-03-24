@@ -2,12 +2,11 @@
 // level ->>> Hard
 // Asked in Google
 
-
-// // How can you compare two deeply nested JSON objects to identify their 
-// // differences,ensuring that each differing key is represented with a 
+// // How can you compare two deeply nested JSON objects to identify their
+// // differences,ensuring that each differing key is represented with a
 // // "from and to" for string, number, and object data types?
 
-// // If key is not present in one of obj then print "EMPTY" (see hobbies and 
+// // If key is not present in one of obj then print "EMPTY" (see hobbies and
 // // country)
 
 // const doc1 = {
@@ -61,15 +60,11 @@
 //   country: { to: 'India', from: 'EMPTY' }
 // }
 
-
-
-
-
 // Solution
 
-function compareObjects(obj1, obj2 ) {
-	const difference = {};
-    const keys = new Set([...Object.keys(obj1), ...Object.keys(obj2)]);
+function compareObjects(obj1, obj2) {
+  const difference = {};
+  const keys = new Set([...Object.keys(obj1), ...Object.keys(obj2)]);
 
   const compareKeys = (key, obj1, obj2, parent) => {
     if (!(key in obj1)) {
@@ -78,20 +73,21 @@ function compareObjects(obj1, obj2 ) {
     } else if (!(key in obj2)) {
       // Key removed from obj1
       parent[key] = { from: obj1[key], to: "EMPTY" };
-    } else if (typeof obj1[key] === 'object' && obj1[key] !== null &&
-      typeof obj2[key] === 'object' && obj2[key] !== null) {
+    } else if (
+      typeof obj1[key] === "object" &&
+      obj1[key] !== null &&
+      typeof obj2[key] === "object" &&
+      obj2[key] !== null
+    ) {
       // Recurse if both values are objects
       parent[key] = compareObjects(obj1[key], obj2[key]);
     } else if (obj1[key] !== obj2[key]) {
       parent[key] = { from: obj1[key], to: obj2[key] };
     }
   };
-  keys.forEach(key => compareKeys(key, obj1, obj2, difference));
+  keys.forEach((key) => compareKeys(key, obj1, obj2, difference));
 
   return difference;
 }
 
-const diff = compareObjects(doc1, doc2)
-
-
-
+const diff = compareObjects(doc1, doc2);

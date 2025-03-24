@@ -4,9 +4,6 @@
 
 // Write custom polyfill for Sort ?
 
-
-
-
 //Solution
 
 const sortArray = function (nums) {

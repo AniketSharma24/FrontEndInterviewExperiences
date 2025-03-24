@@ -2,14 +2,14 @@
 
 ```javascript
 function Example() {
-    let y;
-    console.log(x, y)
-    if (true) {
-        var x = 10; 
-        let y = 10; 
-        console.log(x,y)
-    }
-    console.log(x,y)
+  let y;
+  console.log(x, y);
+  if (true) {
+    var x = 10;
+    let y = 10;
+    console.log(x, y);
+  }
+  console.log(x, y);
 }
 Example();
 ```
@@ -23,67 +23,58 @@ undefined unundefined
 
 10, undefined
 
-
 var x is function-scoped and hoisted, so x is undefined initially, even before its declaration.
 let y is block-scoped, so the outer y is separate from the inner y. Outside the block, y remains uninitialized.
 
 </details>
 
-
 ## Question 2
 
 ```javascript
 const obj = {
-    value: 42,
-    showArrow: function () {
-        setTimeout(() => {
-            console.log(this.value);
-        }, 1000);
-    },
-    showNormal: function () {
-        setTimeout(function () {
-            console.log(this.value);
-        }, 1000);
-    },
+  value: 42,
+  showArrow: function () {
+    setTimeout(() => {
+      console.log(this.value);
+    }, 1000);
+  },
+  showNormal: function () {
+    setTimeout(function () {
+      console.log(this.value);
+    }, 1000);
+  },
 };
 
-obj.showArrow(); 
-obj.showNormal(); 
+obj.showArrow();
+obj.showNormal();
 ```
-
-
 
 <details>
   <summary>Answer</summary>
 
- 
 42 undefined
 
 In arrFn, the arrow function preserves this from obj. In normalFn, this inside the setTimeout refers to window.
 
 </details>
 
-
-
 ## Question 3
 
 ```javascript
 var p = 1;
 function outerFn() {
-    var p = 2;
-    function innterFn() {
-        p++;
-        console.log(p);
-        var p = 3
-        console.log(p)
-    }
-    innterFn()
-    console.log(p)
+  var p = 2;
+  function innterFn() {
+    p++;
+    console.log(p);
+    var p = 3;
+    console.log(p);
+  }
+  innterFn();
+  console.log(p);
 }
-outerFn()
+outerFn();
 ```
-
-
 
 <details>
   <summary>Answer</summary>
@@ -92,12 +83,11 @@ NaN
 3
 2
 
-p to be hoisted and initialized as undefined before incrementing so p++ results in NaN. 
+p to be hoisted and initialized as undefined before incrementing so p++ results in NaN.
 then p = 3 as var is functional scope
 for outer function p=2
+
 </details>
-
-
 
 ## Question 4
 
@@ -121,7 +111,6 @@ var is functional scope so it is shared across all iteration, therefore use let 
 
 </details>
 
-
 ## Question 5
 
 ```javascript
@@ -136,8 +125,6 @@ for (var i = 0; i < arr.length; i++) {
 }
 ```
 
-
-
 <details>
   <summary>Answer</summary>
 
@@ -145,29 +132,26 @@ for (var i = 0; i < arr.length; i++) {
 
 </details>
 
-
 ## Question 6
 
 ```javascript
 //Asked in Amazon
 var a = 10;
-x()
-y()
-z() 
+x();
+y();
+z();
 
-function x(){
- var a = 20;
- console.log(this.a)
+function x() {
+  var a = 20;
+  console.log(this.a);
 }
-function y(){
-  console.log(this.a)
+function y() {
+  console.log(this.a);
 }
 const z = () => {
-  console.log(this.a)
-}
+  console.log(this.a);
+};
 ```
-
-
 
 <details>
   <summary>Answer</summary>
@@ -179,28 +163,25 @@ z() -> tried to access before initilization
 
 </details>
 
-
 ## Question 7
 
 ```javascript
 // this is follow up question for above question
 let a = 10;
-x()
-y()
-z() 
+x();
+y();
+z();
 
-function x(){
- console.log(this.a)
+function x() {
+  console.log(this.a);
 }
-function y(){
-  console.log(this.a)
+function y() {
+  console.log(this.a);
 }
 const z = () => {
-  console.log(this.a)
-}
+  console.log(this.a);
+};
 ```
-
-
 
 <details>
   <summary>Answer</summary>
@@ -209,25 +190,25 @@ undefined, undefined , ReferenceError
 
 In regular functions (x() and y()), this refers to the global object, which does not have variable a so it return undefined.
 
-
 </details>
 
 ## Question 8
 
 ```javascript
 function func() {
-    try {
-        console.log(1)
-        return
-    } catch (e) {
-        console.log(2)
-    } finally {
-        console.log(3)
-    }
-    console.log(4)
+  try {
+    console.log(1);
+    return;
+  } catch (e) {
+    console.log(2);
+  } finally {
+    console.log(3);
+  }
+  console.log(4);
 }
-func()
+func();
 ```
+
 <details>
   <summary>Answer</summary>
 
@@ -240,20 +221,18 @@ func()
 ## Question 9
 
 ```javascript
-let obj = { name: 'John' };
+let obj = { name: "John" };
 let weakMap = new WeakMap();
-weakMap.set(obj, 'Person');
+weakMap.set(obj, "Person");
 
-console.log(weakMap.has(obj));  
+console.log(weakMap.has(obj));
 
-obj = null; 
+obj = null;
 
 setTimeout(() => {
-  console.log(weakMap.has(obj)); 
+  console.log(weakMap.has(obj));
 }, 1000);
 ```
-
-
 
 <details>
   <summary>Answer</summary>
@@ -261,7 +240,7 @@ setTimeout(() => {
 true
 false
 
-obj = null ->  dereferences the object and grabage collection(GB) remove that object when i
+obj = null -> dereferences the object and grabage collection(GB) remove that object when i
 
 </details>
 
@@ -289,8 +268,6 @@ myObject.getArrowFunctionName();
 myObject.updateArrowFunctionScope();
 ```
 
-
-
 <details>
   <summary>Answer</summary>
 
@@ -298,10 +275,10 @@ Inner-Test
 Outer-test
 Inner-Test
 
-
 myObject.getFunctionName(): this in a regular function refers myObject
 myObject.getArrowFunctionName(): Arraow function inherit this from outside scope
-myObject.updateArrowFunctionScope():  Arraow function inherit this from outside and outside it is wrpeerd under function where this is "myObject"
+myObject.updateArrowFunctionScope(): Arraow function inherit this from outside and outside it is wrpeerd under function where this is "myObject"
+
 </details>
 
 ## Question 11
@@ -309,21 +286,19 @@ myObject.updateArrowFunctionScope():  Arraow function inherit this from outside 
 ```javascript
 // asked similar question in mindtickle
 function outer() {
+  console.log(a);
+  var a = 10;
+  function inner() {
     console.log(a);
-    var a = 10;
-    function inner() {
-        console.log(a);
-        return 10;
-        function a () {
-            var a = 10
-        }
+    return 10;
+    function a() {
+      var a = 10;
     }
-    inner();
+  }
+  inner();
 }
 outer();
 ```
-
-
 
 <details>
   <summary>Answer</summary>
@@ -344,39 +319,37 @@ var a declaration is hoisted so it is undefined for first console
 
 var doc = "Soni's frontend doc";
 const obj = {
-    doc:'soni',
-    printName: function(){
-        return this.doc
-    },
-    printNameArrow: () => {
-        return this.doc
-    },
-    IIFE: (function(){
-        // console.log(this)
-        return this.doc
-    })(),
-    IIFEArrow: (() => {
-        // console.log(this)
-        return this.doc
-    })()
-}
-console.log(obj.printName()) 
-console.log(obj.printNameArrow()) 
-console.log(obj.IIFE) 
-console.log(obj.IIFEArrow)
+  doc: "soni",
+  printName: function () {
+    return this.doc;
+  },
+  printNameArrow: () => {
+    return this.doc;
+  },
+  IIFE: (function () {
+    // console.log(this)
+    return this.doc;
+  })(),
+  IIFEArrow: (() => {
+    // console.log(this)
+    return this.doc;
+  })(),
+};
+console.log(obj.printName());
+console.log(obj.printNameArrow());
+console.log(obj.IIFE);
+console.log(obj.IIFEArrow);
 ```
-
-
 
 <details>
   <summary>Answer</summary>
 
-soni,  Soni's frontend doc, Soni's frontend doc, Soni's frontend doc,
+soni, Soni's frontend doc, Soni's frontend doc, Soni's frontend doc,
 
-normal function -> this refer to obj 
+normal function -> this refer to obj
 Arrow function -> this refer to outer scope: which is window obj
 obj.IIFE -> this refers to the global
-obj.IIFEArrow ->  this refers to the global
+obj.IIFEArrow -> this refers to the global
 
 </details>
 
@@ -392,7 +365,7 @@ function multiplyBy3(x) {
 }
 
 function compose(f, g) {
-  return function(x) {
+  return function (x) {
     return f(g(x));
   };
 }
@@ -400,8 +373,6 @@ function compose(f, g) {
 const addThenMultiply = compose(multiplyBy3, add5);
 console.log(addThenMultiply(2));
 ```
-
-
 
 <details>
   <summary>Answer</summary>
@@ -419,12 +390,9 @@ console.log(typeof null);
 console.log(typeof undefined);
 console.log(null === undefined);
 console.log(null == undefined);
-console.log(2 * '2');
-console.log(2 * 'Hello');
-
+console.log(2 * "2");
+console.log(2 * "Hello");
 ```
-
-
 
 <details>
   <summary>Answer</summary>
@@ -446,10 +414,8 @@ NaN
 ## Question 15
 
 ```javascript
-console.log([1,2,3] + [3,2,1])
+console.log([1, 2, 3] + [3, 2, 1]);
 ```
-
-
 
 <details>
   <summary>Answer</summary>
@@ -463,24 +429,22 @@ When the + operator is used with arrays, they are coerced to strings
 
 ```javascript
 class Counter {
-  #number = 10
+  #number = 10;
 
   increment() {
-    this.#number++
+    this.#number++;
   }
 
   getNum() {
-    return this.#number
+    return this.#number;
   }
 }
 
-const counter = new Counter()
-counter.increment()
+const counter = new Counter();
+counter.increment();
 
-console.log(counter.#number)
+console.log(counter.#number);
 ```
-
-
 
 <details>
   <summary>Answer</summary>
@@ -494,17 +458,14 @@ In ES2020, we can add private variables in classes by using the #. We cannot acc
 ## Question 17
 
 ```javascript
-var name = "test"
+var name = "test";
 
 function callName() {
-    name= 'test2',
-    console.log(name)
+  (name = "test2"), console.log(name);
 }
-callName()
-console.log(name)
+callName();
+console.log(name);
 ```
-
-
 
 <details>
   <summary>Answer</summary>
@@ -519,13 +480,11 @@ self explanatory
 ## Question 18
 
 ```javascript
-console.log([] == [])
-console.log({} == {})
-console.log(2 == "2")
-console.log({} === {})
+console.log([] == []);
+console.log({} == {});
+console.log(2 == "2");
+console.log({} === {});
 ```
-
-
 
 <details>
   <summary>Answer</summary>
@@ -544,8 +503,6 @@ const arr = [10, -1, 2];
 arr.sort();
 ```
 
-
-
 <details>
   <summary>Answer</summary>
 
@@ -559,10 +516,7 @@ sorts the array elements as considering element strings by default.
 ```javascript
 //asked in Publicis Sapient
 console.log(7 > 6 > 5);
-
 ```
-
-
 
 <details>
   <summary>Answer</summary>
@@ -579,13 +533,12 @@ a = ++a + a++ + --a + a--;
 console.log(a);
 ```
 
-
-
 <details>
   <summary>Answer</summary>
 4
 
-a = 0; a = 1 + 1 + 1 + 1; 
+a = 0; a = 1 + 1 + 1 + 1;
+
 </details>
 
 ## Question 22
@@ -601,8 +554,6 @@ What will happen when we will clik on button ?
   </div>
 </div>
 ```
-
-
 
 <details>
   <summary>Answer</summary>
@@ -626,8 +577,8 @@ async function foo() {
 
 foo();
 console.log(3);
-
 ```
+
 <details>
   <summary>Answer</summary>
 
@@ -635,11 +586,10 @@ console.log(3);
 3,
 2
 
-await pauses the function execution, allowing the synchronous code 
+await pauses the function execution, allowing the synchronous code
 to executed first
 
 </details>
-
 
 ## Question 24
 
@@ -647,7 +597,6 @@ to executed first
 Promise.all([Promise.resolve(1), Promise.resolve(2), Promise.reject("Error")])
   .then((values) => console.log("Resolved:", values))
   .catch((err) => console.log("Caught:", err));
-
 ```
 
 <details>
@@ -659,50 +608,44 @@ Promise.all rejects immediately if any promise in the array is rejected.
 
 </details>
 
-
-
-
-
 ## Question 25
 
 ```javascript
 Promise.all([Promise.resolve(1), undefined, null])
   .then((values) => console.log("Resolved:", values))
   .catch((err) => console.log("Caught:", err));
-
 ```
+
 <details>
   <summary>Answer</summary>
 
 Resolved: [1, null, ,undefined]
 
-
 Promise.all treats undefined and null as resolved values
 
 </details>
-
 
 ## Question 26
 
 ```javascript
 //asked in multiplier
 
-console.log("Start")
+console.log("Start");
 new Promise((resolve, rej) => {
-    console.log("Promise1")
-    resolve("resolved")
-    console.log("Promise2")
-}).then(data => console.log(data))
-console.log("end")
-
+  console.log("Promise1");
+  resolve("resolved");
+  console.log("Promise2");
+}).then((data) => console.log(data));
+console.log("end");
 ```
+
 <details>
   <summary>Answer</summary>
 
-Start, 
-Promise1, 
-Promise2, 
-end, 
+Start,
+Promise1,
+Promise2,
+end,
 resolved
 
 the promise executor runs synchronously and rest run in asyn fashion
@@ -712,62 +655,59 @@ the promise executor runs synchronously and rest run in asyn fashion
 ## Question 27
 
 ```javascript
-console.log('Start');
+console.log("Start");
 setTimeout(() => {
-  console.log('Timeout');
+  console.log("Timeout");
 }, 0);
 Promise.resolve().then(() => {
-  console.log('Promise');
+  console.log("Promise");
 });
-console.log('End');
-
+console.log("End");
 ```
 
 <details>
   <summary>Answer</summary>
 
-Start, 
-End, 
-Promise, 
+Start,
+End,
+Promise,
 Timeout
 
 synchronous code runs first, then the microtask (Promise.then) executes, followed by the macrotask (setTimeout) after the event loop processes all microtasks
 
 </details>
 
-
 ## Question 28
 
 ```javascript
-console.log('Start');
+console.log("Start");
 
 setTimeout(() => {
-  console.log('Timeout 1');
+  console.log("Timeout 1");
   Promise.resolve().then(() => {
-    console.log('Promise 1');
+    console.log("Promise 1");
   });
   setTimeout(() => {
-    console.log('Timeout 2');
+    console.log("Timeout 2");
   }, 0);
 }, 0);
 
 Promise.resolve().then(() => {
-  console.log('Promise 2');
+  console.log("Promise 2");
 });
 
-console.log('End');
-
+console.log("End");
 ```
 
 <details>
   <summary>Answer</summary>
 
-Start, 
-End, 
-Promise 2, 
-Timeout 1, 
-Promise 1, 
-Timeout 2, 
+Start,
+End,
+Promise 2,
+Timeout 1,
+Promise 1,
+Timeout 2,
 
 synchronous code runs first, then the microtask Promise 2 executes, followed by the first macrotask Timeout 1 and its microtask Promise 1, and finally the second macrotask Timeout 2
 
@@ -777,24 +717,21 @@ synchronous code runs first, then the microtask Promise 2 executes, followed by 
 
 ```javascript
 Promise.resolve(1)
-    .then((x) => x + 1)
-    .then((x) => {
-        throw new Error("An error occurred!");
-    })
-    .catch((err) => {
-        console.log(err.message);
-        return 5;
-    })
-    .then((x) => console.log(x));
-
+  .then((x) => x + 1)
+  .then((x) => {
+    throw new Error("An error occurred!");
+  })
+  .catch((err) => {
+    console.log(err.message);
+    return 5;
+  })
+  .then((x) => console.log(x));
 ```
-
-
 
 <details>
   <summary>Answer</summary>
 
-An error occurred!, 
+An error occurred!,
 5
 
 The "catch" block handles the error and returns 5. This value is passed to the next then.
@@ -805,24 +742,18 @@ The "catch" block handles the error and returns 5. This value is passed to the n
 
 ```javascript
 const promise = new Promise((resolve, reject) => {
-    resolve("First");
-    resolve("Second");
-    reject("Third");
+  resolve("First");
+  resolve("Second");
+  reject("Third");
 });
 
-promise
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
-
+promise.then((res) => console.log(res)).catch((err) => console.log(err));
 ```
-
-
 
 <details>
   <summary>Answer</summary>
 
 First
-
 
 A promise can only resolve/reject once. The subsequent resolve and reject calls are ignored.
 
@@ -831,30 +762,28 @@ A promise can only resolve/reject once. The subsequent resolve and reject calls 
 ## Question 31
 
 ```javascript
-console.log('Start');
+console.log("Start");
 
 async function foo() {
-  console.log('Foo Start');
-  await new Promise(resolve => setTimeout(resolve, 0));
-  console.log('Foo End');
+  console.log("Foo Start");
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  console.log("Foo End");
 }
 
 foo().then(() => {
-  console.log('After Foo');
+  console.log("After Foo");
 });
 
-console.log('End');
+console.log("End");
 ```
-
-
 
 <details>
   <summary>Answer</summary>
 
-Start, 
-Foo Start, 
-End, 
-Foo End, 
+Start,
+Foo Start,
+End,
+Foo End,
 After Foo
 
 </details>
@@ -875,35 +804,28 @@ Promise.reject("Error")
   });
 ```
 
-
-
 <details>
   <summary>Answer</summary>
 
-Caught: Error, 
-Finally 2, 
+Caught: Error,
+Finally 2,
 Then: Recovered
 
 The catch handles the rejection and passes "Recovered" to the next then. The finally block executes but does not alter the flow.
-
 
 </details>
 
 ## Question 33
 
 ```javascript
-let c = { greeting: 'Hey!' };
+let c = { greeting: "Hey!" };
 let d;
 
 d = c;
-c.greeting = 'Hello';
+c.greeting = "Hello";
 
 console.log(d.greeting);
-
-
 ```
-
-
 
 <details>
   <summary>Answer</summary>
@@ -911,6 +833,7 @@ console.log(d.greeting);
 "Hello"
 
 both c and d are pointing towards same reference.
+
 </details>
 
 ## Question 34
@@ -924,20 +847,17 @@ function calculate(add, multiply) {
 
 const newObj = { value: 20 };
 
-console.log(calculate.call(obj, 5, 2)); 
+console.log(calculate.call(obj, 5, 2));
 console.log(calculate.apply(newObj, [3, 4]));
 
 const boundCalc = calculate.bind(obj, 2);
 console.log(boundCalc(3));
-
 ```
-
-
 
 <details>
   <summary>Answer</summary>
 
-30, 
+30,
 92,
 36
 
@@ -960,18 +880,16 @@ const bound2 = bound1.bind({ name: "Grace" });
 
 console.log(bound1());
 console.log(bound2());
-
 ```
-
-
 
 <details>
   <summary>Answer</summary>
 
-Frank, 
+Frank,
 Frank
 
 bind creates a new function with a permanently bound this. Since bound1 already has this bound to { name: "Frank"}, further binding (with bound2) has no effect
+
 </details>
 
 ## Question 36
@@ -982,23 +900,19 @@ const obj = Object.freeze({
   b: { c: 2 },
 });
 
-obj.b.c = 3; 
+obj.b.c = 3;
 obj.d = 4;
 
 console.log(obj);
-
 ```
-
-
 
 <details>
   <summary>Answer</summary>
 
 {
-  a: 1,
-  b: { c: 3 }
+a: 1,
+b: { c: 3 }
 }
-
 
 Object.freeze() makes an object shallowly immutable. This means properties cannot be added or deleted from the object. However, nested objects are not deeply frozen, so obj.b.c can be modified, but obj.d cannot be added.
 
@@ -1011,8 +925,8 @@ const userDetails = {
   firstName: "John",
   lastName: "Doe",
   age: 25,
-  address: { city: "Bangalore", country: "USA" }
-}
+  address: { city: "Bangalore", country: "USA" },
+};
 
 let cloneUserDetails = { ...userDetails };
 
@@ -1020,20 +934,15 @@ let cloneUserDetails = { ...userDetails };
 userDetails.age = 18;
 userDetails.address.city = "chennai";
 
-console.log(cloneUserDetails.age); 
+console.log(cloneUserDetails.age);
 console.log(cloneUserDetails.address.city);
-
-
 ```
-
-
 
 <details>
   <summary>Answer</summary>
 
-25, 
+25,
 chennai
-
 
 cloneUserDetails.age remains 25 because it's a shallow copy.
 
@@ -1054,18 +963,14 @@ const obj = {
 
 obj.value = 5;
 console.log(obj.value);
-
 ```
-
-
 
 <details>
   <summary>Answer</summary>
 12
 
-
-Setting obj.value triggers the setter -> 5 + 1 = 6. 
-The getter then returns 6 * 2 = 12
+Setting obj.value triggers the setter -> 5 + 1 = 6.
+The getter then returns 6 \* 2 = 12
 
 </details>
 
@@ -1076,7 +981,7 @@ function Animal() {
   this.species = "Animal";
 }
 
-Animal.prototype.getSpecies = function() {
+Animal.prototype.getSpecies = function () {
   return this.species;
 };
 
@@ -1088,16 +993,12 @@ Dog.prototype = new Animal();
 
 const dog = new Dog();
 console.log(dog.getSpecies());
-
 ```
-
-
 
 <details>
   <summary>Answer</summary>
 
 "Dog"
-
 
 this.species in the getSpecies method refers to the dog instance, which has its own species property set to "Dog"
 
@@ -1114,34 +1015,30 @@ A.prototype = new B();
 const a = new A();
 console.log(a instanceof A);
 console.log(a instanceof B);
-
 ```
-
-
 
 <details>
   <summary>Answer</summary>
 
-true, 
+true,
 true
 
-a instanceof A returns true ->  a inherits from A.prototype
+a instanceof A returns true -> a inherits from A.prototype
 a instanceof B -> because A.prototype is an instance of B
+
 </details>
 
 ## Question 41
 
 ```javascript
 function Person(name) {
-    this.name = name;
-    return { name: "John" };
+  this.name = name;
+  return { name: "John" };
 }
 
 const person = new Person("Alice");
 console.log(person.name);
 ```
-
-
 
 <details>
   <summary>Answer</summary>
@@ -1149,6 +1046,7 @@ console.log(person.name);
 John
 
 When a constructor explicitly returns an object, the returned object overrides this.
+
 </details>
 
 ## Question 42
@@ -1158,7 +1056,7 @@ function Person(name) {
   this.name = name;
 }
 
-Person.prototype.sayHello = function() {
+Person.prototype.sayHello = function () {
   return "Hello, " + this.name;
 };
 
@@ -1170,22 +1068,18 @@ function Employee(name, job) {
 Employee.prototype = Object.create(Person.prototype);
 Employee.prototype.constructor = Employee;
 
-Employee.prototype.sayHello = function() {
+Employee.prototype.sayHello = function () {
   return "Hello, I am " + this.name + " and I work as a " + this.job;
 };
 
 const employee = new Employee("Alice", "Developer");
 console.log(employee.sayHello());
-
 ```
-
-
 
 <details>
   <summary>Answer</summary>
 
 Hello, I am Alice and I work as a Developer
-
 
 If you will remove sayHelloo method from Employee then it will look into its
 prototype chain and call Person sayHello method.
@@ -1198,8 +1092,6 @@ prototype chain and call Person sayHello method.
 console.log("10" - "4" + "2");
 ```
 
-
-
 <details>
   <summary>Answer</summary>
 
@@ -1207,9 +1099,9 @@ console.log("10" - "4" + "2");
 
 "10" - "4" is 6 (numbers), and then
 6 + "2" results is "62"
-"10" - "4" + "2" → "62" 
-</details>
+"10" - "4" + "2" → "62"
 
+</details>
 
 ## Question 44
 
@@ -1220,12 +1112,10 @@ console.log(x);
 console.log(y);
 ```
 
-
-
 <details>
   <summary>Answer</summary>
 
-10  -> Default value is used because `a` is explicitly `undefined`
+10 -> Default value is used because `a` is explicitly `undefined`
 null -> Default value is ignored because `b` is explicitly `null`.
 
 </details>
@@ -1234,17 +1124,14 @@ null -> Default value is ignored because `b` is explicitly `null`.
 
 ```javascript
 // asked in mindtree
-console.log(NaN == NaN); 
+console.log(NaN == NaN);
 ```
-
-
 
 <details>
   <summary>Answer</summary>
   false
 
-  NaN is not equal to itself.
-
+NaN is not equal to itself.
 
 </details>
 
@@ -1252,14 +1139,12 @@ console.log(NaN == NaN);
 
 ```javascript
 const obj = {
-  a: 1
+  a: 1,
 };
 
-console.log(obj.hasOwnProperty('a'));
-console.log(obj.hasOwnProperty('b'));
+console.log(obj.hasOwnProperty("a"));
+console.log(obj.hasOwnProperty("b"));
 ```
-
-
 
 <details>
   <summary>Answer</summary>
@@ -1269,29 +1154,29 @@ false
 
 a is a direct property of obj
 b is not a direct property of obj
+
 </details>
 
 ## Question 47
 
 ```javascript
 const obj1 = {
-  hasOwnProperty: function() {
-    return 'return!';
+  hasOwnProperty: function () {
+    return "return!";
   },
-  a: 1
+  a: 1,
 };
 
-console.log(obj1.hasOwnProperty('a'));
+console.log(obj1.hasOwnProperty("a"));
 ```
-
-
 
 <details>
   <summary>Answer</summary>
 
-  return
+return
 
 the hasOwnProperty method is overridden in obj1, so it doesn't call the original Object.prototype.hasOwnProperty method
+
 </details>
 
 ## Question 48
@@ -1303,14 +1188,13 @@ const obj2 = Object.create(obj1);
 console.log(obj2.__proto__ === obj1);
 ```
 
-
-
 <details>
   <summary>Answer</summary>
 
-true 
+true
 
-__proto__ points to the prototype of an object. Since obj2 was created with obj1 as its prototype, obj2.__proto__ points to obj1
+**proto** points to the prototype of an object. Since obj2 was created with obj1 as its prototype, obj2.**proto** points to obj1
+
 </details>
 
 ## Question 49
@@ -1318,16 +1202,14 @@ __proto__ points to the prototype of an object. Since obj2 was created with obj1
 ```javascript
 const obj = { a: 1, b: 2 };
 delete obj.a;
-console.log(obj.a); 
-console.log('a' in obj);
+console.log(obj.a);
+console.log("a" in obj);
 ```
-
-
 
 <details>
   <summary>Answer</summary>
 
-undefined, 
+undefined,
 false
 
 </details>
@@ -1344,8 +1226,6 @@ let b = 20;
 const c = 30;
 ```
 
-
-
 <details>
   <summary>Answer</summary>
 
@@ -1354,6 +1234,5 @@ undefined
 ReferenceError: Cannot access 'b' before initialization
 
 ReferenceError: Cannot access 'c' before initialization
+
 </details>
-
-

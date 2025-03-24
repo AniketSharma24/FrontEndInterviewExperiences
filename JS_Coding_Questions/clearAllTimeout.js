@@ -18,11 +18,6 @@
 // // Timeout 2
 // // Timeout 3
 
-
-
-
-
-
 //Solution
 // we are storing original function in a varibale and overriding setTimeOut
 // with custom functionality

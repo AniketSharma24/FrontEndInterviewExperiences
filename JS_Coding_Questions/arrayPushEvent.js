@@ -4,9 +4,6 @@
 
 // Attach event on push element in an array ?
 
-
-
-
 //Solution
 const originalPush = Array.prototype.push;
 
@@ -20,18 +17,18 @@ Array.prototype.push = function (...args) {
 };
 
 Array.prototype.setPushCb = function (callback) {
-  if (typeof callback === 'function') {
-    this.onPush = callback;  // Store the callback function on the array
+  if (typeof callback === "function") {
+    this.onPush = callback; // Store the callback function on the array
   } else {
-    throw new TypeError('Callback must be a function');
+    throw new TypeError("Callback must be a function");
   }
 };
 
 // Test
 const arr = [];
 arr.setPushCb((items) => {
-  console.log('Items pushed:', items);
+  console.log("Items pushed:", items);
 });
 
-arr.push(1); 
+arr.push(1);
 arr.push(2, 3);

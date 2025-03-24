@@ -31,10 +31,6 @@
 // No event found
 // emitter.emit("noEventfount", "test@gmail.com");
 
-
-
-
-
 //Solution
 class EventEmitter {
   constructor() {

@@ -2,16 +2,19 @@
   font-family: Arial, sans-serif;
   box-sizing: border-box;
 }
+
 #typeahead-container {
   width: 300px;
   margin: 0 auto;
   position: relative;
 }
+
 #input-box {
   width: 100%;
   padding: 10px;
   font-size: 16px;
 }
+
 #results {
   border: 1px solid #ccc;
   border-top: none;
@@ -22,10 +25,12 @@
   width: 100%;
   z-index: 1000;
 }
+
 .result-item {
   padding: 10px;
   cursor: pointer;
 }
+
 .result-item:hover {
   background-color: #f0f0f0;
 }
@@ -34,6 +39,7 @@
   width: 100%;
   padding: 10px;
 }
+
 h3 {
   text-align: center;
 }

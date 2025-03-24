@@ -2,7 +2,7 @@
 // Asked in Thoughspot
 // Level ->>> Hard
 
-// // How can you implement a Promise.cancelable utility to allow 
+// // How can you implement a Promise.cancelable utility to allow
 // // cancellation of a promise with a custom error?
 
 // Promise.cancelable = (promise) => {
@@ -27,7 +27,7 @@
 // cancelableTask1
 //   .then((result) => console.log(result))
 //   .catch((error) => console.error(error));
-  
+
 //   cancelableTask2
 //   .then((result) => console.log(result))
 //   .catch((error) => console.error(error));
@@ -42,41 +42,37 @@
 // // Task 1 completed
 // // ERROR! CanceledPromiseError: Promise has been canceled
 
-
-
-
 // Solution
 // we are building wrapper on existing promise and function cancel
 
 class CanceledPromiseError extends Error {
-    constructor() {
-      super("Promise has been canceled");
-      this.name = "CanceledPromiseError";
-    }
+  constructor() {
+    super("Promise has been canceled");
+    this.name = "CanceledPromiseError";
   }
-  
-  Promise.cancelable = (promise) => {
-    let isCanceled = false;
-  
-    const wrappedPromise = new Promise((resolve, reject) => {
-      promise.then(
-        (value) => {
-          if (isCanceled) {
-            reject(new CanceledPromiseError());
-          } else {
-            resolve(value);
-          }
-        },
-        (error) => {
-          reject(error); // Propagate any errors from the original promise
+}
+
+Promise.cancelable = (promise) => {
+  let isCanceled = false;
+
+  const wrappedPromise = new Promise((resolve, reject) => {
+    promise.then(
+      (value) => {
+        if (isCanceled) {
+          reject(new CanceledPromiseError());
+        } else {
+          resolve(value);
         }
-      );
-    });
-  
-    wrappedPromise.cancel = () => {
-      isCanceled = true;
-    };
-  
-    return wrappedPromise;
+      },
+      (error) => {
+        reject(error); // Propagate any errors from the original promise
+      }
+    );
+  });
+
+  wrappedPromise.cancel = () => {
+    isCanceled = true;
   };
 
+  return wrappedPromise;
+};
